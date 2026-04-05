@@ -1,26 +1,28 @@
 def count_item(items, value):
     """Считает, сколько раз value встречается в списке."""
+    count = 0
     for i in items:
-        count = 0
         if i == value:
             count +=1 
-        return count
+    return count
 
 def reverse_list(items):
     """Возвращает новый список в обратном порядке."""
-    return items[-1]
+    return items[::-1]
 
 def flatten_once(nested):
-    ist = [item for i in nested for item in i]
-    return ist
+    return [item for i in nested for item in i]
+
 
 def chunk(items, n):
     """Разбивает список на куски по n элементов.
     Последний кусок может быть короче.
     """
     its = []
-    for i in range(0,len(items), 2):
-        its.append(items[i:i+2])
+    if not items:
+        return []
+    for i in range(0,len(items), n):
+        its.append(items[i:i+n])
     return its
 def interleave(a, b):
     """Чередует элементы двух списков.
@@ -63,6 +65,8 @@ def rotate(items, k):
     """Сдвигает список вправо на k позиций.
     Отрицательный k — сдвиг влево.
     """
+    if not items:
+        return []
     k = k % len(items)
     return items[-k:] + items[:-k]
 
@@ -78,16 +82,15 @@ def zip_lists(a, b):
     """Соединяет два списка в список пар. Без использования zip()."""
     ist = []
     for i in range(min(len(a), len(b))):
-        ist.append((a,b))
-        
+        ist.append((a[i],b[i]))
+    return ist
 
 
 def unzip(pairs):
     """Разбивает список пар на два списка."""
-    ist = [item for i in pairs for item in i]
-    ist = ()
-    for i in pairs:
-        ist.append([i[0]])
-    for i in pairs:
-         ist.append([i[1]])
-    
+    ist = []
+    item = []
+    for i,y in pairs:
+        ist.append(i)
+        item.append(y)
+    return (ist,item)
