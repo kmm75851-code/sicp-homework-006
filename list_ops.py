@@ -1,47 +1,93 @@
 def count_item(items, value):
     """Считает, сколько раз value встречается в списке."""
-    pass
+    for i in items:
+        count = 0
+        if i == value:
+            count +=1 
+        return count
 
 def reverse_list(items):
     """Возвращает новый список в обратном порядке."""
-    pass
+    return items[-1]
 
 def flatten_once(nested):
-    """Превращает список списков в плоский список (один уровень)."""
-    pass
+    ist = [item for i in nested for item in i]
+    return ist
 
 def chunk(items, n):
     """Разбивает список на куски по n элементов.
     Последний кусок может быть короче.
     """
-    pass
-
+    its = []
+    for i in range(0,len(items), 2):
+        its.append(items[i:i+2])
+    return its
 def interleave(a, b):
     """Чередует элементы двух списков.
     Если списки разной длины — остаток более длинного добавляется в конец.
     """
-    pass
+    ist = []
+    
+    min_len = min(len(a), len(b))
+    
+    for i in range(min_len):
+        ist.append(a[i])
+        ist.append(b[i])
+    
+    ist.extend(a[min_len:])
+    ist.extend(b[min_len:])
+    
+    return ist
 
 def run_length_encode(items):
-    """Кодирует список как список пар (количество, элемент).
-    Подряд идущие одинаковые элементы схлопываются в одну пару.
-    """
-    pass
+    ist = []
+    
+    if not items:
+        return []
+    
+    current = items[0]
+    count = 1
+
+    for item in items[1:]:
+        if item == current:
+            count += 1
+        else:
+            ist.append((count, current))
+            current = item
+            count = 1
+
+    ist.append((count, current))
+    return ist
 
 def rotate(items, k):
     """Сдвигает список вправо на k позиций.
     Отрицательный k — сдвиг влево.
     """
-    pass
+    k = k % len(items)
+    return items[-k:] + items[:-k]
 
 def deduplicate(items):
     """Удаляет дубликаты, сохраняя порядок первого вхождения."""
-    pass
+    lst = []
+    for i in items:
+        if i not in lst:
+            lst.append(i)
+    return lst
 
 def zip_lists(a, b):
     """Соединяет два списка в список пар. Без использования zip()."""
-    pass
+    ist = []
+    for i in range(min(len(a), len(b))):
+        ist.append((a,b))
+        
+
 
 def unzip(pairs):
     """Разбивает список пар на два списка."""
-    pass
+    ist = [item for i in pairs for item in i]
+    ist = ()
+    for i in pairs:
+        ist.append([i[0]])
+    for i in pairs:
+         ist.append([i[1]])
+    
