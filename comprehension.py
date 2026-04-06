@@ -23,7 +23,7 @@ def word_lengths(words):
 
 def transpose(matrix):
     """Транспонирует матрицу (список списков) через nested comprehension."""
-    
+    return [[i[f] for i in matrix]for f in range(len(matrix[0]))]
     
 transpose([[1, 2, 3], [4, 5, 6]])    # → [[1, 4], [2, 5], [3, 6]]
 def group_by(f, items):
